@@ -69,11 +69,12 @@ namespace BookManagementApp.Controllers
             {
                 // TODO: Add insert service logic here
                 var result = _bookService.Add(book);
-                if (result.IsSuccessful)
+				
+				if (result.IsSuccessful)
                     return RedirectToAction(nameof(Details), new { id = book.Id });
             }
-            // TODO: Add get related items service logic here to set ViewData if necessary
-            ViewData["AuthorId"] = new SelectList(_authorService.Query().ToList(), "Id", "Name");
+			// TODO: Add get related items service logic here to set ViewData if necessary
+			ViewData["AuthorId"] = new SelectList(_authorService.Query().ToList(), "Id", "Name");
 			ViewBag.Genres = new MultiSelectList(_genreService.GetList(), "Id", "Name");
 			return View(book);
         }

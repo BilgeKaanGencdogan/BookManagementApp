@@ -44,7 +44,7 @@
                 @Html.DisplayNameFor(model => model.AuthorOutput)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GenreInput)
+                @Html.DisplayNameFor(model => model.GenreModels)
             </th>
             <th></th>
         </tr>
@@ -77,7 +77,7 @@
                     @Html.DisplayFor(modelItem => item.AuthorOutput)
 					</td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.GenreInput)
+                    @Html.DisplayFor(modelItem => item.GenreModels)
                 </td>
 					<td>
 						<a asp-action="Details" asp-route-id="@item.Id">Details</a>&nbsp;|&nbsp;

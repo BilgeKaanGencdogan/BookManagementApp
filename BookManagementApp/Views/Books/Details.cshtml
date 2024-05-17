@@ -69,20 +69,13 @@
         </dl>
         <dl class="row">
             <dt class="col-2">
-                @Html.DisplayNameFor(model => model.AuthorId)
+                @Html.DisplayNameFor(model => model.AuthorOutput)
             </dt>
             <dd class="col-10">
-                @Html.DisplayFor(model => model.AuthorId)
+            @Html.DisplayFor(model => model.AuthorOutput)
             </dd>
         </dl>
-        <dl class="row">
-            <dt class="col-2">
-                @Html.DisplayNameFor(model => model.Guid)
-            </dt>
-            <dd class="col-10">
-                @Html.DisplayFor(model => model.Guid)
-            </dd>
-        </dl>
+        
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>&nbsp;|&nbsp;

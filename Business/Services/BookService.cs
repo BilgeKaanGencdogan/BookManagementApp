@@ -43,7 +43,7 @@ namespace Business.Services
                 IsTopSeller = model.IsTopSeller,
                 Isbn = model.Isbn,
                 NumberOfPages = model.NumberOfPages,
-
+                
                 BookGenres = model.GenreInput?.Select(genreInput => new BookGenre()
                 {
                     GenreId = genreInput
@@ -124,6 +124,10 @@ namespace Business.Services
             entity.Price = model.Price;
             entity.AuthorId = model.AuthorId;
             entity.BookType = model.BookType;
+            entity.IsTopSeller = model.IsTopSeller;
+            entity.Isbn = model.Isbn;
+            entity.NumberOfPages = model.NumberOfPages;
+          
             entity.BookGenres = model.GenreInput?.Select(userInput => new BookGenre()
             {
                 GenreId = userInput
