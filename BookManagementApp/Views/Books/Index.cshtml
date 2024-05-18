@@ -12,10 +12,13 @@
 {
     <p class="bg-danger text-white">@TempData["Message"]</p>
 }
+@if (User.IsInRole("admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -77,12 +80,22 @@
                     @Html.DisplayFor(modelItem => item.AuthorOutput)
 					</td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.GenreModels)
+                    @foreach (var genre in item.GenreModels)
+                    {
+                        <span>@genre.Name</span>
+
+                        <br />
+                    }
                 </td>
 					<td>
-						<a asp-action="Details" asp-route-id="@item.Id">Details</a>&nbsp;|&nbsp;
-						<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>&nbsp;|&nbsp;
-						<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+						<a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <span>&nbsp;|&nbsp;</span>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <span>&nbsp;|&nbsp;</span>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
 					</td>
 				</tr>
 		}

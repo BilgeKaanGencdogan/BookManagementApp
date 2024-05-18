@@ -13,9 +13,12 @@
     <p class="bg-danger text-white">@TempData["Message"]</p>
 }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (User.IsInRole("admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -45,9 +48,14 @@
                     @Html.Raw(item.Books)
                 </td>
                 <td class="text-end">
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>&nbsp;|&nbsp;
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>&nbsp;|&nbsp;
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <span>&nbsp;|&nbsp;</span>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <span>&nbsp;|&nbsp;</span>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
                 </td>
             </tr>
         }

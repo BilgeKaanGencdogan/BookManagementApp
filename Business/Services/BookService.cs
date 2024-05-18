@@ -43,14 +43,12 @@ namespace Business.Services
                 IsTopSeller = model.IsTopSeller,
                 Isbn = model.Isbn,
                 NumberOfPages = model.NumberOfPages,
-                
-                BookGenres = model.GenreInput?.Select(genreInput => new BookGenre()
-                {
-                    GenreId = genreInput
-                }).ToList(),
 
-           
-            };
+
+				BookGenres = model.GenreInput?.Select(genreId => new BookGenre { GenreId = genreId }).ToList()
+
+
+			};
 
 
             _db.Books.Add(entity);
@@ -127,13 +125,10 @@ namespace Business.Services
             entity.IsTopSeller = model.IsTopSeller;
             entity.Isbn = model.Isbn;
             entity.NumberOfPages = model.NumberOfPages;
-          
-            entity.BookGenres = model.GenreInput?.Select(userInput => new BookGenre()
-            {
-                GenreId = userInput
-            }).ToList();
 
-            _db.Books.Update(entity);
+			entity.BookGenres = model.GenreInput?.Select(genreId => new BookGenre { GenreId = genreId }).ToList();
+
+			_db.Books.Update(entity);
             _db.SaveChanges();
 
             return new SuccessResult();

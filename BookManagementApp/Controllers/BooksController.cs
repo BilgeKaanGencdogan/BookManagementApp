@@ -12,10 +12,12 @@ using Business.Services;
 using Business.Model;
 using MVC.Controllers.Bases;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
 
 //Generated from Custom Template.
 namespace BookManagementApp.Controllers
 {
+    
     public class BooksController : MvcControllerBase
     {
         // TODO: Add service injections here
@@ -50,12 +52,14 @@ namespace BookManagementApp.Controllers
 		}
 
         // GET: Books/Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
 			// TODO: Add get related items service logic here to set ViewData if necessary
 			ViewData["AuthorId"] = new SelectList(_authorService.Query().ToList(), "Id", "Name");
 			ViewBag.Genres = new MultiSelectList(_genreService.GetList(), "Id", "Name");
 			return View();
+		
         }
 
         // POST: Books/Create
@@ -63,57 +67,57 @@ namespace BookManagementApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
+
         public IActionResult Create(BookModel book)
         {
-            if (ModelState.IsValid)
-            {
-                // TODO: Add insert service logic here
-                var result = _bookService.Add(book);
-				
+			if (ModelState.IsValid)
+			{
+				var result = _bookService.Add(book);
 				if (result.IsSuccessful)
-                    return RedirectToAction(nameof(Details), new { id = book.Id });
-            }
-			// TODO: Add get related items service logic here to set ViewData if necessary
+					return RedirectToAction(nameof(Details), new { id = book.Id });
+			}
 			ViewData["AuthorId"] = new SelectList(_authorService.Query().ToList(), "Id", "Name");
 			ViewBag.Genres = new MultiSelectList(_genreService.GetList(), "Id", "Name");
 			return View(book);
-        }
+		}
 
         // GET: Books/Edit/5
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(int id)
         {
-            BookModel book = _bookService.GetItem(id); // TODO: Add get item service logic here
-            if (book == null)
-            {
-                return View("Error", $"Book with ID {id} not found!");
-            }
-            // TODO: Add get related items service logic here to set ViewData if necessary
-            ViewData["AuthorId"] = new SelectList(_authorService.Query().ToList(), "Id", "Name");
+			BookModel book = _bookService.GetItem(id);
+			if (book == null)
+			{
+				return View("Error", $"Book with ID {id} not found!");
+			}
+			ViewData["AuthorId"] = new SelectList(_authorService.Query().ToList(), "Id", "Name");
 			ViewBag.Genres = new MultiSelectList(_genreService.GetList(), "Id", "Name");
 			return View(book);
-        }
+		}
 
         // POST: Books/Edit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
+
         public IActionResult Edit(BookModel book)
         {
-            if (ModelState.IsValid)
-            {
-                // TODO: Add update service logic here
-                var result = _bookService.Update(book);
-                if (result.IsSuccessful)
-                    return RedirectToAction(nameof(Details), new { id = book.Id });
-            }
-            // TODO: Add get related items service logic here to set ViewData if necessary
-            ViewData["AuthorId"] = new SelectList(_authorService.Query().ToList(), "Id", "Name");
+			if (ModelState.IsValid)
+			{
+				var result = _bookService.Update(book);
+				if (result.IsSuccessful)
+					return RedirectToAction(nameof(Details), new { id = book.Id });
+			}
+			ViewData["AuthorId"] = new SelectList(_authorService.Query().ToList(), "Id", "Name");
 			ViewBag.Genres = new MultiSelectList(_genreService.GetList(), "Id", "Name");
 			return View(book);
-        }
+		}
 
         // GET: Books/Delete/5
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
             BookModel book = _bookService.Query().SingleOrDefault(b => b.Id == id); // TODO: Add get item service logic here
@@ -127,6 +131,8 @@ namespace BookManagementApp.Controllers
         // POST: Books/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
+
         public IActionResult DeleteConfirmed(int id)
         {
             var result = _bookService.Delete(id);
