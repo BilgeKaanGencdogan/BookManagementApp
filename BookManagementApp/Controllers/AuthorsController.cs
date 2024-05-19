@@ -19,7 +19,7 @@ using System.Security.Policy;
 //Generated from Custom Template.
 namespace BookManagementApp.Controllers
 {
-    //[Authorize(Roles = "admin")]
+   
     public class AuthorsController : MvcControllerBase
     {
         // TODO: Add service injections here
@@ -49,7 +49,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Authors/Create
-        [Authorize(Roles = "admin")]
+        
 
         public IActionResult Create()
         {
@@ -62,7 +62,7 @@ namespace BookManagementApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+     
         public IActionResult Create(AuthorModel author)
         {
             if (ModelState.IsValid)
@@ -78,7 +78,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Authors/Edit/5
-        [Authorize(Roles = "admin")]
+       
 
         public IActionResult Edit(int id)
         {
@@ -96,7 +96,7 @@ namespace BookManagementApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+        
         public IActionResult Edit(AuthorModel author)
         {
             if (ModelState.IsValid)
@@ -112,7 +112,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Authors/Delete/5
-        [Authorize(Roles = "admin")]
+       
 
         public IActionResult Delete(int id)
         {
@@ -127,7 +127,7 @@ namespace BookManagementApp.Controllers
         // POST: Authors/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+      
         public IActionResult DeleteConfirmed(int id)
         {
             // TODO: Add delete service logic here

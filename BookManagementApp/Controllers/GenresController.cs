@@ -46,7 +46,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Genres/Create
-        [Authorize(Roles = "admin")]
+       
         public IActionResult Create()
         {
             // TODO: Add get related items service logic here to set ViewData if necessary
@@ -60,7 +60,7 @@ namespace BookManagementApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+       
 
         public IActionResult Create(GenreModel genre)
         {
@@ -77,7 +77,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Genres/Edit/5
-        [Authorize(Roles = "admin")]
+       
         public IActionResult Edit(int id)
         {
             GenreModel genre = _genreService.Query().SingleOrDefault(g => g.Id == id); // TODO: Add get item service logic here
@@ -94,7 +94,7 @@ namespace BookManagementApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+       
 
         public IActionResult Edit(GenreModel genre)
         {
@@ -111,7 +111,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Genres/Delete/5
-        [Authorize(Roles = "admin")]
+       
         public IActionResult Delete(int id)
         {
             GenreModel genre = _genreService.Query().SingleOrDefault(g => g.Id == id); // TODO: Add get item service logic here
@@ -125,7 +125,7 @@ namespace BookManagementApp.Controllers
         // POST: Genres/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+      
 
         public IActionResult DeleteConfirmed(int id)
         {

@@ -32,21 +32,19 @@ namespace Business.Services
 		{
 			
 			if (_db.Users.Any(u => u.UserName.ToUpper() == model.UserName.ToUpper().Trim()))
-				return new ErrorResult("Active user with the same user name exists!");
+				return new ErrorResult("User with the same user name exists!");
 
 			User entity = new User()
 			{
 				
 				Password = model.Password.Trim(),
 
-				// Way 1: assign 0 if model's RoleId is null
-				//RoleId = model.RoleId ?? 0,
-				// Way 2: since model's RoleId is required (can't be null), assign its value
+				
 				RoleId = model.RoleId.Value,
 
 				UserName = model.UserName.Trim()
 
-				// TODO: Games
+			
 			};
 
 			_db.Users.Add(entity);

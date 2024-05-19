@@ -23,4 +23,9 @@
 		<ProjectReference Include="..\Business\Business.csproj" />
 		<ProjectReference Include="..\DataAccess\DataAccess.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Areas\Account\Data\" />
+		<Folder Include="Areas\Account\Models\" />
+	</ItemGroup>
 </Project>

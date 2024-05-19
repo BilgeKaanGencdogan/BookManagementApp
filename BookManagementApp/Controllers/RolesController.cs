@@ -49,7 +49,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Roles/Create
-        [Authorize(Roles = "admin")]
+   
         public IActionResult Create()
         {
             // TODO: Add get related items service logic here to set ViewData if necessary
@@ -61,7 +61,7 @@ namespace BookManagementApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+       
 
 
         public IActionResult Create(RoleModel role)
@@ -83,7 +83,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Roles/Edit/5
-        [Authorize(Roles = "admin")]
+       
         public IActionResult Edit(int id)
         {
             RoleModel role = _roleService.Query().SingleOrDefault(r => r.Id == id); // TODO: Add get item service logic here
@@ -100,7 +100,7 @@ namespace BookManagementApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+        
 
         public IActionResult Edit(RoleModel role)
         {
@@ -120,7 +120,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Roles/Delete/5
-        [Authorize(Roles = "admin")]
+       
         public IActionResult Delete(int id)
         {
             RoleModel role = _roleService.Query().SingleOrDefault(r => r.Id == id); // TODO: Add get item service logic here
@@ -134,7 +134,7 @@ namespace BookManagementApp.Controllers
         // POST: Roles/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+     
 
         public IActionResult DeleteConfirmed(int id)
         {

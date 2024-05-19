@@ -41,7 +41,7 @@
             <div class="row mb-3">
                 <label asp-for="PublishDate" class="col-2 col-form-label"></label>
                 <div class="col-5">
-                    <input asp-for="PublishDate" id="datetimepicker" class="form-control" />
+                    <input asp-for="PublishDate" id="datetimepicker" class="form-control" type="text" />
                     <span asp-validation-for="PublishDate" class="text-danger"></span>
                 </div>
             </div>
@@ -112,7 +112,7 @@
         $(function () {
             // Initialize DateTimePicker
             $("#datetimepicker").datetimepicker({
-                timepicker: true,
+                timepicker: false,
                 format: "m/d/Y"
             });
 

@@ -43,7 +43,7 @@ namespace BookManagementApp.Areas.Account.Controllers
             ModelState.Remove(nameof(user.RoleId));
             if (ModelState.IsValid)
             {
-                var existingUser = _userService.Query().SingleOrDefault(u => u.UserName == user.UserName && u.Password == u.Password
+                var existingUser = _userService.Query().SingleOrDefault(u => u.UserName == user.UserName && u.Password == user.Password
                     );
                 if (existingUser is null)
                 {
