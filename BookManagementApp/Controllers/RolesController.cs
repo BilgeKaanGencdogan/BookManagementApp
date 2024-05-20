@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Authorization;
 //Generated from Custom Template.
 namespace BookManagementApp.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class RolesController : MvcControllerBase
     {
         // TODO: Add service injections here
@@ -28,6 +29,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Roles
+        [AllowAnonymous]
         public IActionResult Index()
         {
             List<RoleModel> roleList = _roleService.Query().ToList(); // TODO: Add get collection service logic here
@@ -35,6 +37,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Roles/Details/5
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
           

@@ -19,7 +19,8 @@ using System.Security.Policy;
 //Generated from Custom Template.
 namespace BookManagementApp.Controllers
 {
-   
+
+    [Authorize(Roles = "admin")]
     public class AuthorsController : MvcControllerBase
     {
         // TODO: Add service injections here
@@ -31,6 +32,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Authors
+        [AllowAnonymous]
         public IActionResult Index()
         {
             List<AuthorModel> authorList = _authorService.Query().OrderBy(a => a.Name).ToList(); 
@@ -38,6 +40,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Authors/Details/5
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
             AuthorModel author = _authorService.Query().SingleOrDefault(a => a.Id == id); 

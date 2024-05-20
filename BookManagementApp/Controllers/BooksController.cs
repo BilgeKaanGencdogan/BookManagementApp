@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Authorization;
 //Generated from Custom Template.
 namespace BookManagementApp.Controllers
 {
-    
+    [Authorize(Roles = "admin")]
     public class BooksController : MvcControllerBase
     {
         // TODO: Add service injections here
@@ -33,6 +33,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Books
+        [AllowAnonymous]
         public IActionResult Index()
         {
             List<BookModel> bookList = _bookService.Query().OrderBy(b => b.Name).ToList();
@@ -40,6 +41,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Books/Details/5
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
 			BookModel book = _bookService.GetItem(id); // TODO: Add get item service logic here

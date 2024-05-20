@@ -17,8 +17,8 @@ using DataAccess.Results.Bases;
 //Generated from Custom Template.
 namespace BookManagementApp.Controllers
 {
-	[Authorize]
-	public class UsersController : MvcControllerBase
+    [Authorize(Roles = "admin")]
+    public class UsersController : MvcControllerBase
     {
         // TODO: Add service injections here
         private readonly IUserService _userService;
@@ -39,6 +39,7 @@ namespace BookManagementApp.Controllers
 		}
 
         // GET: Users/Details/5
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
 			UserModel user = _userService.GetItem(id); // TODO: Add get item service logic here

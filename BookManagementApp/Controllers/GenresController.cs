@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 //Generated from Custom Template.
 namespace BookManagementApp.Controllers
 {
-   
+    [Authorize(Roles = "admin")]
     public class GenresController : Controller
     {
         // TODO: Add service injections here
@@ -28,6 +28,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Genres
+        [AllowAnonymous]
         public IActionResult Index()
         {
             List<GenreModel> genreList = _genreService.Query().OrderBy(g => g.Name).ToList();
@@ -35,6 +36,7 @@ namespace BookManagementApp.Controllers
         }
 
         // GET: Genres/Details/5
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
             GenreModel genre = _genreService.Query().SingleOrDefault(g => g.Id == id);
