@@ -20,5 +20,28 @@ namespace DataAccess.Contexts
         {
 
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            #region String Property Maximum Lengths
+            modelBuilder.Entity<Book>().Property(b => b.Name).HasMaxLength(100);
+            modelBuilder.Entity<Book>().Property(b => b.Isbn).HasMaxLength(13);
+
+            modelBuilder.Entity<Author>().Property(a => a.Name).HasMaxLength(50);
+            modelBuilder.Entity<Author>().Property(a => a.Surname).HasMaxLength(50);
+
+            modelBuilder.Entity<Genre>().Property(a => a.Name).HasMaxLength(30);
+            #endregion
+
+            #region Relationships
+            modelBuilder.Entity<Author>().HasMany(a => a.Books).WithOne(b => b.Author).HasForeignKey(b => b.AuthorId).OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<BookGenre>().HasOne(bg => bg.Book).WithMany(b => b.BookGenres).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<BookGenre>().HasOne(bg => bg.Genre).WithMany(g => g.BookGenres).OnDelete(DeleteBehavior.NoAction);
+            #endregion
+
+            #region Unique Indices
+            modelBuilder.Entity<BookGenre>().HasIndex(bg => new { bg.BookId, bg.GenreId }).IsUnique();
+            #endregion
+        }
     }
 }

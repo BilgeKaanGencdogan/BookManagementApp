@@ -4,6 +4,7 @@ using DataAccess.Records.Bases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,9 @@ namespace Business.Model
 {
     public class BookModel : Record
     {
+        [DisplayName("Book Name")]
+        [Required(ErrorMessage = "{0} is required!")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} must be minimum {2} maximum {1} characters!")]
         public string Name { get; set; } = null!;
         [DisplayName("ISBN")]
         public string Isbn { get; set; }
@@ -27,6 +31,7 @@ namespace Business.Model
         public BookTypesEnum BookType { get; set; }
 
 
+        [Range(0, 100000)]
         public decimal? Price { get; set; }
 
         [DisplayName("Author")]
