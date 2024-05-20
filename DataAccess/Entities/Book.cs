@@ -14,7 +14,8 @@ namespace DataAccess.Entities
     {
         [Required]
         [StringLength(100)]
-        public string Name { get; set; } 
+        public string Name { get; set; }
+        [StringLength(13, MinimumLength = 13, ErrorMessage = "{0} must be minimum {2} maximum {1} characters!")]
         public string Isbn { get; set; }
         public short? NumberOfPages { get; set; }
         public DateTime? PublishDate { get; set; }

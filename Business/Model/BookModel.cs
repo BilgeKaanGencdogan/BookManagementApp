@@ -19,6 +19,7 @@ namespace Business.Model
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} must be minimum {2} maximum {1} characters!")]
         public string Name { get; set; } = null!;
         [DisplayName("ISBN")]
+        [StringLength(13, MinimumLength = 13, ErrorMessage = "{0} must be minimum {2} maximum {1} characters!")]
         public string Isbn { get; set; }
         [DisplayName("Pages")]
         public short? NumberOfPages { get; set; }
